@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday Bangaram ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+
+    <audio id="bg-music" preload="auto" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="camera-rig">
+        <div id="viewport">
+            <section id="scene-1" class="scene active">
+                <div class="interactive-element" onclick="startExperience()">
+                    <div class="envelope">💌</div>
+                    <p class="tap-hint">Tap to Open</p>
+                </div>
+            </section>
+
+            <section id="scene-2" class="scene">
+                <div class="hb-wrap">
+                    <h1 class="glow-text">HAPPY<br>BIRTHDAY</h1>
+                    <h2 id="babe-name" class="cursive"></h2>
+                </div>
+            </section>
+
+            <section id="scene-3" class="scene">
+                <div class="glass-card" id="message-container"></div>
+            </section>
+
+            <section id="scene-4" class="scene">
+                <div class="interactive-element" onclick="finalExplosion()">
+                    <div class="envelope pulse-heart">💖</div>
+                </div>
+                <h1 id="final-text" class="cursive">Once again happy birthday babee lovee youh !!</h1>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

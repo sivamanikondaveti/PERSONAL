@@ -1,0 +1,80 @@
+:root {
+    --pink: #ff4d6d;
+    --dark: #0b090a;
+    --glass: rgba(255, 255, 255, 0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body, html {
+    width: 100%; height: 100%;
+    background-color: var(--dark);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: fixed;
+}
+
+#bg-canvas {
+    position: fixed; top: 0; left: 0; z-index: 1;
+    background: radial-gradient(circle at center, #2c0712 0%, #0b090a 100%);
+}
+
+/* NEW: The Camera Rig handles the Zoom */
+#camera-rig {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    perspective: 1000px;
+    transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+#viewport {
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+}
+
+.scene {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: scale(0.8) translateZ(-150px);
+    padding: 20px;
+}
+
+.scene.active { opacity: 1; visibility: visible; transform: scale(1) translateZ(0); }
+.scene.exit { opacity: 0; transform: scale(1.4) translateZ(300px); }
+
+.envelope { font-size: clamp(80px, 20vw, 120px); cursor: pointer; filter: drop-shadow(0 0 25px var(--pink)); animation: floating 3s ease-in-out infinite; }
+.glow-text { font-size: clamp(2.8rem, 12vw, 6rem); font-weight: 900; text-align: center; background: linear-gradient(to bottom, #fff, var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 15px; }
+.cursive { font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: var(--pink); text-shadow: 0 0 15px rgba(255, 77, 109, 0.4); }
+
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: clamp(30px, 6vw, 50px);
+    border-radius: 30px;
+    width: 100%; max-width: 550px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    line-height: 1.9;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    text-align: center;
+}
+
+.tap-hint { margin-top: 15px; letter-spacing: 4px; text-transform: uppercase; font-size: 0.8rem; color: var(--pink); animation: pulse 2s infinite; }
+#final-text { opacity: 0; margin-top: 30px; transition: opacity 2s ease; text-align: center; }
+
+@keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+@keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+.pulse-heart { animation: heartBeat 1.5s infinite; }
+@keyframes heartBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
